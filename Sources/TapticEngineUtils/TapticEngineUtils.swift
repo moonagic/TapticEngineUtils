@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 10.0, *)
-class TapticEngineUtils {
+public class TapticEngineUtils {
     private static var currentStyle = UIImpactFeedbackGenerator.FeedbackStyle.light
     private static var tapticEngine = UIImpactFeedbackGenerator(style: currentStyle)
     
