@@ -12,15 +12,15 @@ public class TapticEngineUtils {
     
     private static var currentStyle = UIImpactFeedbackGenerator.FeedbackStyle.light
     private static var tapticEngine = UIImpactFeedbackGenerator(style: currentStyle)
+    private static let notiticationFeedbackEngine = UINotificationFeedbackGenerator()
     
     public static var tapticEngineEnabled = true
     
     public final class func feedback(style: UnclearFeedbackStyle) {
         if !tapticEngineEnabled { return }
+        prepare(style: style)
         switch style {
-        case .impact(let style):
-            prepare(style: style)
-            UINotificationFeedbackGenerator().notificationOccurred(UINotificationFeedbackGenerator.FeedbackType.success)
+        case .impact:
             tapticEngine.impactOccurred()
             tapticEngine.prepare()
             break
@@ -28,13 +28,20 @@ public class TapticEngineUtils {
             UINotificationFeedbackGenerator().notificationOccurred(style)
             break
         }
-        
     }
     
-    public final class func prepare(style: UIImpactFeedbackGenerator.FeedbackStyle) {
-        if currentStyle != style {
-            tapticEngine = UIImpactFeedbackGenerator(style: style)
-            tapticEngine.prepare()
+    public final class func prepare(style: UnclearFeedbackStyle) {
+        if !tapticEngineEnabled { return }
+        switch style {
+        case .impact(let style):
+            if currentStyle != style {
+                tapticEngine = UIImpactFeedbackGenerator(style: style)
+                tapticEngine.prepare()
+            }
+            break
+        case .notification:
+            notiticationFeedbackEngine.prepare()
+            break
         }
     }
 }
