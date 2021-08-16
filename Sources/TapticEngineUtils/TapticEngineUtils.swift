@@ -25,7 +25,7 @@ public class TapticEngineUtils {
             tapticEngine.prepare()
             break
         case .notification(let style):
-            UINotificationFeedbackGenerator().notificationOccurred(style)
+            notiticationFeedbackEngine.notificationOccurred(style)
             break
         }
     }
