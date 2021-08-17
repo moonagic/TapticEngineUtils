@@ -4,9 +4,9 @@
 //
 //  Created by Torghast on 8/16/21.
 //
-#if canImport(UIKit)
+
+#if os(iOS)
 import UIKit
-#endif
 
 @available(iOS 10.0, *)
 public class TapticEngineUtils {
@@ -52,5 +52,4 @@ public class TapticEngineUtils {
     }
 }
 
-
-
+#endif
